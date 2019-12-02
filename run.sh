@@ -146,6 +146,8 @@ export rawRules="$@" && parsedRules=$(parseAccessRules $rawRules) && unset rawRu
 setAccess $parsedRules
 # Enable basic auth (if any)
 setAuth
+# remove ConnectPort to allow all ports for CONNECT
+sed -i '/ConnectPort*/d' /etc/tinyproxy/tinyproxy.conf
 # Enable log to file
 enableLogFile
 # Start Tinyproxy
